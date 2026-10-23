@@ -1,0 +1,80 @@
+backend:
+  name: github
+  repo: Jonsits/Usaviral24n
+  branch: main
+  base_url: https://usaviral24n.com
+  auth_endpoint: api/auth
+media_folder: static/uploads
+public_folder: /uploads
+site_url: https://usaviral24n.com
+locale: en
+
+collections:
+  - name: posts
+    label: Posts
+    folder: content/posts
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} ({{category}})"
+    editor: { preview: true }
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: slug, label: "Slug (URL: usaviral24n.com/your-slug)", widget: string, pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "Sirf small letters, numbers aur - use karein"] }
+      - { name: date, label: Date, widget: datetime }
+      - { name: category, label: Category, widget: relation, collection: settings, file: categories, search_fields: ["categories.*.name"], value_field: "categories.*.slug", display_fields: ["categories.*.name"] }
+      - { name: focus_keyword, label: "Focus Keyword (SEO score ke liye)", widget: string, required: false }
+      - { name: seo_title, label: SEO Title, widget: string, required: false }
+      - { name: description, label: Meta Description, widget: text, required: false, pattern: [".{0,160}", "Max 160 characters"] }
+      - { name: image, label: Featured Image, widget: image, required: false }
+      - { name: image_alt, label: Image Alt Text, widget: string, required: false }
+      - { name: image_title, label: Image Title, widget: string, required: false }
+      - { name: toc, label: Auto Table of Contents, widget: boolean, default: true }
+      - { name: trending, label: Show in Trending, widget: boolean, default: false }
+      - { name: body, label: Content, widget: markdown, modes: [rich_text, raw], editor_components: [image, code-block, youtube] }
+
+  - name: settings
+    label: Settings
+    files:
+      - name: categories
+        label: Categories
+        file: content/settings/categories.json
+        fields:
+          - label: Categories
+            name: categories
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: slug, label: Slug, widget: string }
+      - name: ads
+        label: Ads
+        file: content/settings/ads.json
+        fields:
+          - { name: verify_code, label: "Verify Code (goes in <head>)", widget: text, required: false }
+          - { name: ads_txt, label: "ads.txt content (root /ads.txt)", widget: text, required: false }
+          - { name: top_banner, label: "1. Top Banner", widget: text, required: false }
+          - { name: below_title, label: "2. Title ke neeche", widget: text, required: false }
+          - { name: below_image, label: "3. Featured Image ke neeche", widget: text, required: false }
+          - { name: below_p1, label: "4. Paragraph 1 ke neeche", widget: text, required: false }
+          - { name: below_p2, label: "5. Paragraph 2 ke neeche", widget: text, required: false }
+          - { name: social_bar, label: "6. Social Bar (Home + Post)", widget: text, required: false }
+          - { name: related_click, label: "7. Related Article Click Ad", widget: text, required: false }
+          - { name: extra_slot, label: "8. Extra Slot (new network)", widget: text, required: false }
+          - { name: extra_network_code, label: "Extra Network Code (<head>)", widget: text, required: false }
+      - name: pages
+        label: Pages
+        file: content/settings/pages.json
+        fields:
+          - { label: About Us, name: about, widget: object, fields: [{name: title, label: Title, widget: string}, {name: body, label: Content, widget: markdown}] }
+          - { label: Contact Us, name: contact, widget: object, fields: [{name: title, label: Title, widget: string}, {name: body, label: Content, widget: markdown}] }
+          - { label: Privacy Policy, name: privacy, widget: object, fields: [{name: title, label: Title, widget: string}, {name: body, label: Content, widget: markdown}] }
+          - { label: Disclaimer, name: disclaimer, widget: object, fields: [{name: title, label: Title, widget: string}, {name: body, label: Content, widget: markdown}] }
+      - name: site
+        label: Site (Name & Logo)
+        file: content/settings/site.json
+        fields:
+          - { name: site_name, label: Site Name, widget: string }
+          - { name: logo, label: Logo (khali chhodo to naam dikhega), widget: image, required: false }
