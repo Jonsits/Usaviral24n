@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://usaviral24n.com/sitemap.xml
