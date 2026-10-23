@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Admin Login</title>
+</head>
+<body>
+<script src="https://unpkg.com/decap-cms@3.1.10/dist/decap-cms.js"></script>
+<script>
+// YouTube embed button: paste link, click button
+CMS.registerEditorComponent({
+  id: "youtube", label: "YouTube Video", icon: "movie",
+  fields: [{name: "url", label: "YouTube Link", widget: "string"}],
+  pattern: /^<div class="yt"><iframe src="https:\/\/www\.youtube\.com\/embed\/([\w-]{11})"[^>]*><\/iframe><\/div>$/,
+  fromBlock: m => ({url: "https://youtu.be/" + m[1]}),
+  toBlock: o => {
+    const m = (o.url||"").match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
+    return m ? '<div class="yt"><iframe src="https://www.youtube.com/embed/' + m[1] + '" allowfullscreen loading="lazy"></iframe></div>' : "";
+  },
+  toPreview: o => "YouTube: " + o.url
+});
+</script>
+<script>
+// SEO score panel (Rank Math style) - shows in the Preview pane while writing
+const SEOPreview = createClass({
+  render() {
+    const e = this.props.entry, g = k => (e.getIn(['data', k]) || '') + '';
+    const title = g('seo_title') || g('title'), desc = g('description'), slug = g('slug');
+    const kw = g('focus_keyword').trim().toLowerCase(), body = g('body'), alt = g('image_alt');
+    const words = body.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+    const first = (body.split(/\n\s*\n/).find(x => x.trim() && !/^#/.test(x.trim())) || '').toLowerCase();
+    const has = s => !!kw && s.toLowerCase().includes(kw);
+    const ks = kw.replace(/[^a-z0-9]+/g, '-');
+    const checks = [
+      [!!kw, 'Focus keyword set'],
+      [has(title), 'Keyword in SEO title'],
+      [!!kw && slug.includes(ks), 'Keyword in slug'],
+      [has(desc), 'Keyword in meta description'],
+      [has(first), 'Keyword in first paragraph'],
+      [has(alt), 'Keyword in image alt text'],
+      [title.length >= 30 && title.length <= 60, 'SEO title 30-60 chars (now ' + title.length + ')'],
+      [desc.length >= 120 && desc.length <= 160, 'Meta description 120-160 chars (now ' + desc.length + ')'],
+      [words >= 600, 'Content 600+ words (now ' + words + ')'],
+      [/\]\(|<a /.test(body), 'Post has a link'],
+      [/^##\s|<h2/m.test(body), 'Post has H2 headings'],
+      [!!g('image'), 'Featured image added']
+    ];
+    const score = Math.round(checks.filter(c => c[0]).length / checks.length * 100);
+    const col = score >= 80 ? '#1a9d4b' : score >= 50 ? '#e08a00' : '#d32f2f';
+    const box = { fontFamily: 'system-ui,sans-serif', padding: '12px' };
+    return h('div', { style: box },
+      h('div', { style: { fontSize: '40px', fontWeight: 700, color: col } }, score + '/100'),
+      h('div', { style: { color: '#666', marginBottom: '10px' } }, 'SEO Score'),
+      h('div', { style: { border: '1px solid #ddd', padding: '10px', marginBottom: '12px', background: '#fff' } },
+        h('div', { style: { color: '#1a0dab', fontSize: '18px' } }, title || 'SEO title'),
+        h('div', { style: { color: '#006621', fontSize: '13px' } }, 'usaviral24n.com/' + (slug || 'your-slug')),
+        h('div', { style: { color: '#545454', fontSize: '14px' } }, desc || 'Meta description yahan dikhega')),
+      checks.map((c, i) => h('div', { key: i, style: { padding: '3px 0', color: c[0] ? '#1a9d4b' : '#d32f2f' } }, (c[0] ? '✔ ' : '✘ ') + c[1])),
+      h('hr'), h('h2', {}, g('title')), this.props.widgetFor('body'));
+  }
+});
+CMS.registerPreviewTemplate('posts', SEOPreview);
+</script>
+</body></html>
