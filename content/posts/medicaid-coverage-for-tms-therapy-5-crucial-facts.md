@@ -2,7 +2,7 @@
 title: "Medicaid Coverage for TMS Therapy: 5 Crucial Facts"
 slug: medicaid-coverage-for-tms-therapy
 date: 2026-10-27T23:11:00.000Z
-category: lifestyle
+category: "health-& wellness "
 focus_keyword: Medicaid coverage for TMS therapy
 seo_title: "Medicaid Coverage for TMS Therapy: 5 Crucial Facts"
 description: Explore Medicaid coverage for TMS therapy in Oklahoma City,
@@ -15,12 +15,9 @@ image_title: Medicaid Coverage for TMS Therapy in Oklahoma City
 toc: true
 trending: false
 ---
-![Medicaid coverage for TMS therapy and depression treatment options in Oklahoma City](/uploads/1000077684.jpg "Medicaid Coverage for TMS Therapy in Oklahoma City")
 
 
 <p>Medicaid coverage for TMS therapy in Oklahoma City could be the breakthrough you've been waiting for. If you're living with depression and medication just hasn't been enough, you know how exhausting and expensive the search for relief can feel. The good news is, your SoonerCare plan might cover this non-invasive treatment — here's exactly how to check your eligibility, costs, and approval in 5 simple facts.</p>
-
-
 
 <p>Transcranial magnetic stimulation (TMS) is a noninvasive treatment that uses magnetic pulses to stimulate specific areas of the brain. It is used to treat certain mental health conditions, including depression. However, whether Medicaid pays for this treatment depends on the patient's specific plan, medical eligibility, and applicable coverage rules.</p>
 
