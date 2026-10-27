@@ -1,1 +1,24 @@
-{"categories":[{"name":"Entertainment","slug":"entertainment"},{"name":"News","slug":"news"},{"name":"Lifestyle","slug":"lifestyle"},{"name":"Trending","slug":"trending"},{"name":"Sports","slug":"sports"}]}
+{
+  "categories": [
+    {
+      "name": "Entertainment",
+      "slug": "entertainment"
+    },
+    {
+      "name": "News",
+      "slug": "news"
+    },
+    {
+      "name": "Health & Wellness",
+      "slug": "health-& wellness "
+    },
+    {
+      "name": "Trending",
+      "slug": "trending"
+    },
+    {
+      "name": "Sports",
+      "slug": "sports"
+    }
+  ]
+}
