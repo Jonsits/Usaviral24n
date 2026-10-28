@@ -1,1 +1,18 @@
-{"about":{"title":"About Us","body":"Welcome to USA Viral 24N."},"contact":{"title":"Contact Us","body":"Email: contact@usaviral24n.com"},"privacy":{"title":"Privacy Policy","body":"Your privacy policy goes here."},"disclaimer":{"title":"Disclaimer","body":"Your disclaimer goes here."}}
+{
+  "about": {
+    "title": "About Us",
+    "body": "## Welcome to USA Viral 24N\n\nUSA Viral 24N (usaviral24n.com) is a website that brings together viral stories, trending topics and useful reads in one easy place. We aim to keep our articles simple, clear and easy to read on any device.\n\n## What We Cover\n\n- **News:** important stories and updates people are talking about.\n- **Entertainment:** movies, celebrities, music and pop culture.\n- **Health & Wellness:** general information on health topics, coverage questions and healthy living.\n- **Trending:** stories that are spreading fast online.\n- **Sports:** updates and talking points from the world of sports.\n\n## Our Goal\n\nOur goal is to give readers helpful and interesting content that is easy to understand. We try to write clear headlines, use relevant images and keep our pages simple to browse.\n\n## Please Note\n\nThe articles on this website are for general information and entertainment. They are not professional medical, legal or financial advice. Please read our Disclaimer page for details.\n\n## Get in Touch\n\nWe love hearing from our readers. If you have a question, a correction or a suggestion, email us at contact@usaviral24n.com or visit our Contact Us page.\n\nThank you for visiting USA Viral 24N.."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "body": "Email: contact@usaviral24n.com"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "body": "Your privacy policy goes here."
+  },
+  "disclaimer": {
+    "title": "Disclaimer",
+    "body": "Your disclaimer goes here."
+  }
+}
