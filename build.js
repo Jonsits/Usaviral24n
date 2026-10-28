@@ -5,6 +5,7 @@ const siteCfg=J('content/settings/site.json');const SITE=siteCfg.site_name||'USA
 const cats=J('content/settings/categories.json').categories;
 const ads=J('content/settings/ads.json'),pages=J('content/settings/pages.json');
 const catName=s=>(cats.find(c=>c.slug===s)||{name:s}).name;
+const catCls=s=>catName(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 const ad=k=>ads[k]?`<div class="ad">${ads[k]}</div>`:'';
 const out=(p,h)=>{const f=path.join('dist',p,'index.html');fs.mkdirSync(path.dirname(f),{recursive:true});fs.writeFileSync(f,h)};
@@ -25,7 +26,7 @@ const layout=({title,desc,body,canon,social,image})=>`<!doctype html><html lang=
 <footer>${Object.entries(pages).map(([k,p])=>`<a href="/${slugOf(k)}/">${p.title}</a>`).join(' · ')}<br>© ${new Date().getFullYear()} ${SITE}</footer>
 ${social?ad('social_bar').replace('class="ad"','class="ad social"'):''}</body></html>`;
 const slugOf=k=>({about:'about-us',contact:'contact-us',privacy:'privacy-policy',disclaimer:'disclaimer'})[k];
-const card=p=>`<a class="card" href="/${p.slug}/"><b>${esc(p.title)}</b><span>${catName(p.category)} · ${p.date.toDateString()}</span></a>`;
+const card=p=>`<a class="card${p.image?' has-img':''}" href="/${p.slug}/">${p.image?`<img class="thumb" src="${p.image}" alt="${esc(p.image_alt||p.title)}" loading="lazy">`:''}<div><span class="badge c-${catCls(p.category)}">${catName(p.category)}</span><b>${esc(p.title)}</b><span>${p.date.toDateString()}</span></div></a>`;
 
 function render(p){
   let html=marked.parse(p.body),toc=[];
